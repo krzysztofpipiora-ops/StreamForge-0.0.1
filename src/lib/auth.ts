@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, token }) {
       if (token && session.user) {
-        // @ts-expect-error
+        // @ts-expect-error: tymczasowe wyciszenie bledu typowania
         session.user.id = token.sub
       }
       return session
