@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Satoshi', sans-serif;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Clash Display', sans-serif;
+}
+
+/* Efekt płynnego przesuwania tła w stylu Liquid Glass */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.6; }
+}
+
+.liquid-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 10% 20%, rgba(157, 92, 255, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.15) 0%, transparent 40%);
+  animation: pulseGlow 8s ease-in-out infinite;
+}
