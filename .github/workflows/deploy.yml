@@ -1,33 +1,52 @@
-name: Test Kompilacji Produkcyjnej
+name: Test i Kompilacja Produkcyjna
 
 on:
   push:
-    branches: [main]
-
-permissions:
-  contents: read
+    branches: [ main ]
 
 jobs:
   build-test:
     runs-on: ubuntu-latest
     steps:
-      - name: Pobranie kodu źródłowego
+      - name: Checkout kodu
         uses: actions/checkout@v4
 
-      - name: Instalacja menedżera pakietów pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 9
-
-      - name: Inicjalizacja środowiska Node.js
+      - name: Instalacja Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-node-version: 20
 
-      - name: Instalacja zależności projektowych
+      - name: Konfiguracja pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+          run_install: false
+
+      - name: Pobranie ścieżki cache pnpm
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Cache dla pnpm
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Instalacja zależności
         run: pnpm install --no-frozen-lockfile
 
-      - name: Budowanie testowe aplikacji
-        run: pnpm prisma generate
+      - name: Pobranie konfiguracji środowiska Vercel
+        run: pnpm dlx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
         env:
-          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/streamforge"
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+      - name: Budowanie projektu (Vercel Build)
+        run: pnpm dlx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
