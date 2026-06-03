@@ -1,7 +1,7 @@
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { NextAuthOptions } from 'next-auth'
-import TwitchProvider from 'next-auth/providers/twitch'
-import GoogleProvider from 'next-auth/providers/google'
+import GoogleProvider from "next-auth/providers/google";
+import TwitchProvider from "next-auth/providers/twitch";
 import { prisma } from '@/lib/prisma'
 
 export const authOptions: NextAuthOptions = {
