@@ -1,52 +1,30 @@
-name: Test i Kompilacja Produkcyjna
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout kodu
+steps:
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Instalacja Node.js
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-node-version: 20
+          node-version: 20
 
-      - name: Konfiguracja pnpm
-        uses: pnpm/action-setup@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          version: 8
-          run_install: false
+          version: 9
+          # To zapobiegnie wywalaniu błędu o braku pnpm-lock.yaml
+          run_install: false 
 
-      - name: Pobranie ścieżki cache pnpm
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - name: Install Dependencies
+        run: pnpm install
 
-      - name: Cache dla pnpm
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+      - name: Install Vercel CLI
+        run: pnpm add -g vercel@latest
 
-      - name: Instalacja zależności
-        run: pnpm install --no-frozen-lockfile
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Pobranie konfiguracji środowiska Vercel
-        run: pnpm dlx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
-      - name: Budowanie projektu (Vercel Build)
-        run: pnpm dlx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
