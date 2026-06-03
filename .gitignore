@@ -1,0 +1,48 @@
+# Artefakty kompilacji produkcyjnej Next.js
+/.next/
+/out/
+/build/
+
+# Foldery menedżerów pakietów i zależności
+/node_modules/
+/pnpm-lock.yaml
+/package-lock.json
+/yarn.lock
+
+# Pliki środowiskowe zawierające poufne dane kluczy
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Logi systemowe i zrzuty błędów runtime
+lsthreaddump
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Pliki systemów operacyjnych
+.DS_Store
+.AppleDouble
+.LSOverride
+Thonky.db
+Thumbs.db
+
+# Pliki cache kompilacji TypeScript
+*.tsbuildinfo
+
+# Raporty i wyniki testów automatycznych
+/coverage/
+/.vitest/
+
+# Lokalna baza danych deweloperskich Prisma
+/prisma/dev.db
+/prisma/dev.db-journal
+
+# Pliki binarne przesyłane lokalnie w trybie deweloperskim
+/public/uploads/*
+!/public/uploads/.gitkeep
