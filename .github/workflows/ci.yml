@@ -1,0 +1,45 @@
+name: Ciągła Integracja (CI)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobranie kodu źródłowego
+        uses: actions/checkout@v4
+
+      - name: Instalacja menedżera pakietów pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Inicjalizacja środowiska Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Instalacja zależności projektowych
+        run: pnpm install --frozen-lockfile
+
+      - name: Generowanie klienta Prisma ORM
+        run: pnpm prisma generate
+        env:
+          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/streamforge"
+
+      - name: Weryfikacja statyczna kodu (Linting)
+        run: pnpm lint
+
+      - name: Kontrola spójności typów (TypeScript)
+        run: pnpm typecheck
+
+      - name: Uruchomienie automatycznych testów jednostkowych
+        run: pnpm test:coverage
