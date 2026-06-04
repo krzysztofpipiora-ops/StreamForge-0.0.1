@@ -1,22 +1,22 @@
 ---
-name: 🚀 Propozycja Funkcjonalności
-about: Zaproponuj nowe rozszerzenie lub optymalizację strukturalną dla StreamForge.
+name: 🚀 Feature request
+about: Suggest a new feature or improvement for StreamForge.
 title: 'feat: '
 labels: enhancement, feature
 assignees: ''
 ---
 
-### 🎯 Cel operacyjny
-Czy ta funkcja odpowiada na konkretny problem lub ograniczenie API zewnętrznych platform? Opisz to tutaj.
+### 🎯 Goal
+What problem does this feature solve?
 
-### 💡 Proponowane rozwiązanie
-Precyzyjny opis techniczny integracji nowej funkcjonalności z warstwą UI/UX oraz silnikami danych.
+### 💡 Proposed solution
+Describe the implementation and how it will integrate with the UI and platform services.
 
-### ⚡ Korzyści biznesowe i techniczne
-Wyjaśnij, w jaki sposób ta implementacja poprawi przepustowość telemetrii streamu lub zarządzanie treścią.
+### ⚡ Benefits
+Explain how this feature improves workflow, moderation, or stream management.
 
-### 🔮 Alternatywy
-Opisz inne podejścia lub zewnętrzne narzędzia SaaS, które były rozważane.
+### 🔮 Alternatives
+Describe alternatives considered or external tools that already provide a similar capability.
 /PULL_REQUEST_TEMPLATE.md
 Markdown
 ### 🛠️ Wprowadzone zmiany

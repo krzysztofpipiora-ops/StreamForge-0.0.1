@@ -1,4 +1,4 @@
-name: Analiza Bezpieczeństwa Zależności
+name: Dependency Review
 
 on:
   pull_request:
@@ -12,10 +12,10 @@ jobs:
   dependency-review:
     runs-on: ubuntu-latest
     steps:
-      - name: Pobranie kodu źródłowego
+      - name: Checkout repository
         uses: actions/checkout@v4
-      
-      - name: Skanowanie podatności w pakietach zewnętrznych
+
+      - name: Dependency review
         uses: actions/dependency-review-action@v4
         with:
           fail-on-severity: high

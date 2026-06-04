@@ -1,9 +1,12 @@
-### 🛠️ Wprowadzone zmiany
-Podsumowanie zmian zawartych w tym scaleniu kodu:
+### 🛠️ Summary of changes
+Describe the updates included in this pull request.
 
-- [ ] Modyfikacje w schemacie bazy danych Prisma.
-- [ ] Utworzenie/aktualizacja reużywalnych komponentów UI.
-- [ ] Optymalizacja renderowania Next.js Server Components.
+- [ ] Database schema or Prisma model changes
+- [ ] UI components created or updated
+- [ ] Next.js server rendering or API improvements
 
-### 🧪 Weryfikacja i testy skryptowe
-Opisz wykonane testy jednostkowe lub integracyjne:
+### 🧪 Validation
+Describe the tests or manual steps completed:
+- `pnpm lint`
+- `pnpm typecheck`
+- `pnpm test`

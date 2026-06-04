@@ -1,22 +1,23 @@
 ---
-name: 🐛 Zgłoszenie Błędu
-about: Utwórz zgłoszenie, aby pomóc nam poprawić stabilność StreamForge.
+name: 🐛 Bug report
+about: Create a bug report to help improve StreamForge stability.
 title: 'bug: '
 labels: bug, triage
 assignees: ''
 ---
 
-### 📝 Opis usterki
-Jasny i zwięzły opis tego, na czym polega błąd w działaniu aplikacji.
+### 📝 What happened?
+Describe the bug in detail.
 
-### 🕹️ Kroki do odtworzenia
-1. Przejdź do sekcji '...'
-2. Kliknij na element '...'
-3. Zobacz błąd w konsoli lub interfejsie.
+### 🕹️ Steps to reproduce
+1. Go to '...'
+2. Click on '...'
+3. Observe the unexpected behavior.
 
-### 📊 Oczekiwane zachowanie systemu
-Opis tego, jak aplikacja powinna zachować się w prawidłowych warunkach.
+### 📊 Expected behavior
+Describe what you expected the app to do.
 
-### 🖥️ Logi techniczne i zrzuty ekranu
+### 🖥️ Logs and screenshots
 ```text
-Wklej tutaj odpowiednie logi z konsoli, błędy Prisma Engine lub payloady sieciowe.
+Include any relevant console logs, network payloads, or error messages.
+```

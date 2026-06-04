@@ -2,6 +2,4 @@
 /.next/
 /out/
 /dist/
-/coverage/
 *.md
-/prisma/migrations/

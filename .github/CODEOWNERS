@@ -1,9 +1,5 @@
-# Domyślny właściciel dla całej zawartości repozytorium
 * @krzysztofpipiora-ops
 
-# Krytyczne skrypty migracyjne i warstwa bazodanowa
 /prisma/ @krzysztofpipiora-ops
-
-# Bezpieczeństwo interfejsów API i obsługa NextAuth
 /src/app/api/ @krzysztofpipiora-ops
 /src/lib/auth.ts @krzysztofpipiora-ops

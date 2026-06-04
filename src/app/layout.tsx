@@ -1,22 +1,21 @@
-import React from 'react'
-import './globals.css' // Bezpośrednia ścieżka do stylów w tym samym folderze
+import './globals.css'
 
 export const metadata = {
-  title: 'StreamForge - Panel Kontrolny',
-  description: 'Centrum zarządzania transmisjami live',
+  title: 'StreamForge 🎮',
+  description: 'All-in-one streaming hub for Twitch, YouTube, Kick, Discord, and TikTok.',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pl">
       <head>
-        <link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://api.fontshare.com" />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap"
+          rel="stylesheet"
+        />
       </head>
-      <body className="bg-[#070711] text-white antialiased selection:bg-[#9D5CFF] selection:text-white">
+      <body className="min-h-screen bg-[#070711] text-white antialiased selection:bg-brand-accent selection:text-white">
         {children}
       </body>
     </html>
